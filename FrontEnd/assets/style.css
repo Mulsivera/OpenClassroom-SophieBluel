@@ -94,9 +94,15 @@ nav li {
 	padding: 0 10px;
 	font-size: 1.2em;
 }
-
-li:hover {
+nav a {
+	text-decoration: none;
+}
+a:visited {
+	color:black
+}
+li:hover, a:hover {
 	color: #B1663C;
+	text-decoration: none;
 }
 #introduction {
 	display: flex;
@@ -137,36 +143,38 @@ li:hover {
 	width: 100%;
 
 }
-#contact {
+#formulaire {
 	width: 50%;
 margin: auto;
 }
-#contact > * {
+#formulaire > * {
 	text-align: center;
 
 }
-#contact h2{
+#formulaire h2{
 	margin-bottom: 20px;
 }
-#contact form {
+#formulaire form {
 	text-align: left;
 	margin-top:30px;
 	display: flex;
 	flex-direction: column;
 }
 
-#contact input {
+#formulaire input {
 	height: 50px;
 	font-size: 1.2em;
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+	padding-left: 15px;
 }
-#contact label {
+#formulaire label {
 	margin: 2em 0 1em 0;
 }
-#contact textarea {
+#formulaire textarea {
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+	padding-left: 15px;
 }
 
 input[type="submit"]{
@@ -190,7 +198,7 @@ footer nav ul {
 	display:flex;
 	justify-content: center;
 	column-gap: 10px;
-	margin-bottom: 30px;
+	margin-bottom: 50px;
 }
 
 .filters button {
@@ -209,4 +217,18 @@ footer nav ul {
 	color: white;
 }
 
+.navLogin {
+	margin-bottom:150px;
+}
+
+.mainLogin {
+	display: flex;
+	justify-content: center;
+}
+
+.passwordForgot {
+	font-weight: bold;
+	text-decoration: underline;
+	margin-bottom: 350px;;
+}
 

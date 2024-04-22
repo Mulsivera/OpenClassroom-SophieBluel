@@ -189,20 +189,22 @@ footer nav ul {
 .filters {
 	display:flex;
 	justify-content: center;
-	column-gap: 15px;
+	column-gap: 10px;
 	margin-bottom: 30px;
 }
 
 .filters button {
 	background-color: transparent;
-	padding: 5px;
-	width: 175px;
+	padding: 9px 15px;
 	border: 2px solid #1D6154;
-	border-radius: 10px;
-	font-family: 'Work Sans';
+	border-radius: 60px;
+	font-family: 'Syne';
+	color: #1D6154;
+	font-size: 16px;
+	font-weight: bold;
 }
 
-.filters button:hover, .filters button:active {
+.filters button:hover, .filters button:focus {
 	background-color: #1D6154;
 	color: white;
 }

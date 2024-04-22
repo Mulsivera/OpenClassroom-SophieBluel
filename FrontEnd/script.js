@@ -27,7 +27,7 @@ bodyFigures.innerHTML = figures
 /* Génération des boutons de filtres */
 let filters = "";
 
-filters += `<button class="filter-button">Tous</button>`
+filters += `<button class="filter-button" id="autofocus">Tous</button>`
 categories.forEach(categories => {
     filters += `<button class="filter-button">${categories.name}</button>`
 })

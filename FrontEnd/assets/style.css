@@ -97,7 +97,7 @@ nav li {
 nav a {
 	text-decoration: none;
 }
-a:visited {
+a:visited, a {
 	color:black
 }
 li:hover, a:hover {
@@ -145,13 +145,13 @@ li:hover, a:hover {
 }
 #formulaire {
 	width: 50%;
-margin: auto;
+	margin: auto;
 }
 #formulaire > * {
 	text-align: center;
 
 }
-#formulaire h2{
+#formulaire h2 {
 	margin-bottom: 20px;
 }
 #formulaire form {
@@ -232,3 +232,15 @@ footer nav ul {
 	margin-bottom: 350px;;
 }
 
+#alert {
+	margin-top: 30px;
+	color: red;
+}
+
+#login {
+	color:black
+}
+
+#logout {
+	color:black
+}

@@ -53,19 +53,77 @@ let filterButtons = document.querySelectorAll(".filter-button");
         })}
 /* Application des filtres */
 
-document.onload = document.getElementById("logout").style.display = "none"; document.getElementById("editMode").style.display = "none" ; document.getElementById("projectEdit").style.display = "none"
+
+/* Affichage mode édition */
 
 const token = localStorage.getItem('token');
 if (token) {
     document.getElementById("login").style.display = "none"
     document.getElementById("logout").style.display = "block"
-    document.getElementById("editMode").style.display = "flex"
+    document.getElementById("editionheadband").style.display = "flex"
     document.getElementById("filters").style.display = "none"
     document.getElementById("projectEdit").style.display = "flex"
 }
+
+/* Affichage mode édition */
+
+
+/* Logout */
 
 const logout = document.getElementById("logout")
 logout.addEventListener("click", function() {
     localStorage.removeItem('token')
     window.location.href = "login.html";
+})
+
+/* Logout */
+
+
+/* Ouverture / Fermeture modal */
+
+const openmodal = document.getElementById("projectEdit")
+openmodal.addEventListener("click" , function() {
+    document.getElementById("modal").style.display = "flex"
+    generergalerie(works)
+})
+
+const closemodal = document.getElementById("modalXmark")
+closemodal.addEventListener("click" , function() {
+    document.getElementById("modal").style.display = "none"
+})
+
+/* Ouverture / Fermeture modal */
+
+
+/* Génération des images dans la modale galerie photo */
+
+function generergalerie(works){
+    let galerie = "";
+    
+    works.forEach(work => {
+        galerie += `<div class="modalPicture" style="background-image: url('${work.imageUrl}');">
+        <img class="modalTrash" src="/SophieBluel/FrontEnd/assets/icons/trash.svg">
+        </div>`
+    });
+    
+    let bodygalerie = document.querySelector("#photoGallery")
+    bodygalerie.innerHTML = galerie;
+    }
+
+/* Génération des images dans la modale galerie photo */
+
+/* Gestion du bouton d'envoi des nouveaux travaux */
+let changementtitre = document.getElementById("titretravail")
+let changementcateogrie = document.getElementById("categorySelector")
+let boutonenvoinouveautravail = document.getElementById("addNewWork")
+boutonenvoinouveautravail.disabled = true;
+changementtitre.addEventListener('change', function () {
+    if (document.getElementById("titretravail").value === "") {
+        boutonenvoinouveautravail.disabled = true;
+        boutonenvoinouveautravail.style.background = 'grey'
+    } else {
+        boutonenvoinouveautravail.disabled = false;
+        boutonenvoinouveautravail.style.background = '#1D6154';
+    }
+    console.log(document.getElementById("titretravail").value)
 })

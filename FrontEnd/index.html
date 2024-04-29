@@ -11,60 +11,135 @@
 	<link rel="stylesheet" href="./assets/style.css">
 	<script type="module" src="script.js"></script>
 </head>
-<div id="editMode">
-	<img src="/SophieBluel/FrontEnd/assets/icons/editwhite.svg">
-	<p class="editPhrase">Mode édition</p>
-</div>
+
+<!-- Bandeau édition -->
+
+	<div id="editionheadband" style="display: none;">
+		<img src="/SophieBluel/FrontEnd/assets/icons/editwhite.svg">
+		<p>Mode édition</p>
+	</div>
+
+<!-- bandeau éditon -->
+
 <body>
-<header>
-	<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
-	<nav>
-		<ul>
-			<li><a href="index.html#projets">projets</a></li>
-			<li><a href="index.html#formulaire">contact</a></li>
-			<li id="login"><a href="login.html">login</a></li>
-			<li id="logout"><a href="login.html">logout</a></li>
-			<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
-		</ul>
-	</nav>
-</header>
+
+<!-- Navigation -->
+
+	<header>
+		<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
+		<nav><ul>
+				<li><a href="index.html#projets">projets</a></li>
+				<li><a href="index.html#formulaire">contact</a></li>
+				<li id="login"><a href="login.html">login</a></li>
+				<li id="logout" style="display: none;"><a href="login.html">logout</a></li>
+				<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
+		</ul></nav>
+	</header>
+
+<!-- Navigation -->
+
 <main>
-	<section id="introduction">
-		<figure>
-			<img src="./assets/images/sophie-bluel.png" alt="">
-		</figure>
-		<article>
-			<h2>Designer d'espace</h2>
-			<p>Je raconte votre histoire, je valorise vos idées. Je vous accompagne de la conception à la livraison finale du chantier.</p>
-			<p>Chaque projet sera étudié en commun, de façon à mettre en valeur les volumes, les matières et les couleurs dans le respect de l’esprit des lieux et le choix adapté des matériaux. Le suivi du chantier sera assuré dans le souci du détail, le respect du planning et du budget.</p>
-			<p>En cas de besoin, une équipe pluridisciplinaire peut-être constituée : architecte DPLG, décorateur(trice)</p>
-		</article>
-	</section>
+
+	<!-- Introduction -->
+
+		<section id="introduction">
+			<figure>
+				<img src="./assets/images/sophie-bluel.png" alt="">
+			</figure>
+			<article>
+				<h2>Designer d'espace</h2>
+				<p>Je raconte votre histoire, je valorise vos idées. Je vous accompagne de la conception à la livraison finale du chantier.</p>
+				<p>Chaque projet sera étudié en commun, de façon à mettre en valeur les volumes, les matières et les couleurs dans le respect de l’esprit des lieux et le choix adapté des matériaux. Le suivi du chantier sera assuré dans le souci du détail, le respect du planning et du budget.</p>
+				<p>En cas de besoin, une équipe pluridisciplinaire peut-être constituée : architecte DPLG, décorateur(trice)</p>
+			</article>
+		</section>
+
+	<!-- Introduction -->
+
+	<!-- Portfolio -->
+
 	<section id="portfolio">
 		<div class="projectTitle">
 			<h2>Mes Projets</h2>
-			<button id="projectEdit">
+			<button id="projectEdit" href="#modal" style="display: none;">
 				<img src="/SophieBluel/FrontEnd/assets/icons/editblack.svg">
 				<p>modifier</p>
 			</button>
 		</div>
 		<div class="filters" id="filters"></div>
-		<div class="gallery" id="projets"></div>
+		<div class="gallery"></div>
 	</section>
-	<section id="formulaire">
-		<h2>Contact</h2>
-		<p>Vous avez un projet ? Discutons-en !</p>
-		<form action="#" method="post">
-			<label for="name">Nom</label>
-			<input type="text" name="name" id="name">
-			<label for="email">Email</label>
-			<input type="email" name="email" id="email">
-			<label for="message">Message</label>
-			<textarea name="message" id="message" cols="30" rows="10"></textarea>
-			<input type="submit" value="Envoyer">
-		</form>
-	</section>
+
+	<!-- Portfolio -->
+
+	<!-- Formulaire contact -->
+
+		<section id="formulaire">
+			<h2>Contact</h2>
+			<p>Vous avez un projet ? Discutons-en !</p>
+			<form action="#" method="post">
+				<label for="name">Nom</label>
+				<input type="text" name="name" id="name">
+				<label for="email">Email</label>
+				<input type="email" name="email" id="email">
+				<label for="message">Message</label>
+				<textarea name="message" id="message" cols="30" rows="10"></textarea>
+				<input type="submit" value="Envoyer">
+			</form>
+		</section>
+
+	<!-- Formulaire contact -->
+
 </main>
+
+<asside id="modal" class="modal" style="display: none;">
+
+	<!-- Modale galerie photo -->
+
+		<div class="modalWrapperGallery">
+			<div class="modalXmarkBox">
+				<img src="/SophieBluel/FrontEnd/assets/icons/xmark.svg" id="modalXmark">
+			</div>
+			<p class="modalTitle">Galerie photo</p>
+			<div id="photoGallery"></div>
+			<hr class="modalSeparator">
+			<button class="modalButton">Ajouter une photo</button>
+		</div>
+
+	<!-- Modale galerie photo -->
+
+	<!-- Modale Ajout projet -->
+
+		<div class="modalWrapperAddProject">
+			<div class="modalAddProjectIconBox">
+				<img src="/SophieBluel/FrontEnd/assets/icons/arrow-left.svg" id="modalXmark">
+				<img src="/SophieBluel/FrontEnd/assets/icons/xmark.svg" id="modalXmark">
+			</div>
+			<div class="AddProjectEditSection">
+				<p class="modalTitle">Ajout photo</p>
+						<div class="AddPhotoButton">
+							<img src="/SophieBluel/FrontEnd/assets/icons/picturegrey.svg">
+							<button>+ Ajouter photo</button>
+							<p>jpg, png : 4mo max</p>
+					</div>
+				<form class="AddWorkForm">
+					<label for="titretravail">Titre</label>
+					<input type="text" name="titretravail" id="titretravail">
+					<label for="descriptiontravail">Catégorie</label>
+					<select name="descriptiontravail" id="categorySelector">
+						<option value="objets">Objets</option>
+						<option value="Appartements">Appartements</option>
+						<option value="Hotels & restaurants">Hotels & Restaurants</option>
+					</select>
+					<hr class="modalSeparator">
+					<input class="modalButton" type="submit" value="Valider" id="addNewWork">
+				</form>
+			</div>
+		</div>
+
+	<!-- Modale Ajout projet -->
+
+</asside>
 
 <footer>
 	<nav>
@@ -73,5 +148,6 @@
 		</ul>
 	</nav>
 </footer>
+
 </body>
 </html>

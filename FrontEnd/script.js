@@ -53,12 +53,15 @@ let filterButtons = document.querySelectorAll(".filter-button");
         })}
 /* Application des filtres */
 
-document.onload = document.getElementById("logout").style.display = "none"
+document.onload = document.getElementById("logout").style.display = "none"; document.getElementById("editMode").style.display = "none" ; document.getElementById("projectEdit").style.display = "none"
 
 const token = localStorage.getItem('token');
 if (token) {
     document.getElementById("login").style.display = "none"
     document.getElementById("logout").style.display = "block"
+    document.getElementById("editMode").style.display = "flex"
+    document.getElementById("filters").style.display = "none"
+    document.getElementById("projectEdit").style.display = "flex"
 }
 
 const logout = document.getElementById("logout")

@@ -48,18 +48,16 @@ table {
 }
 /** end reset css**/
 body {
-	max-width: 1140px;
-	margin:auto;
 	font-family: 'Work Sans' ;
 	font-size: 14px;
 }
 header {
 	display: flex;
 	justify-content: space-between;
-	margin: 50px 0
+	margin: 50px 50px;
 }
 section {
-	margin: 50px 0
+	margin: 50px
 }
 
 h1{
@@ -129,7 +127,6 @@ li:hover, a:hover {
 }
 #portfolio h2 {
 	text-align: center;
-	margin-bottom: 1em;
 }
 .gallery {
 	width: 100%;
@@ -237,10 +234,35 @@ footer nav ul {
 	color: red;
 }
 
-#login {
+#login, #logout {
 	color:black
 }
 
-#logout {
-	color:black
+#editMode {
+	background-color: black;
+	display: flex;
+	justify-content: center;
+	padding:20px;
+	gap: 10px;
+}
+
+.editPhrase {
+	color:white;
+	font-size: 16px;;
+}
+
+.projectTitle {
+	display:flex;
+	justify-content: center;
+	gap:30px;
+	margin-bottom: 60px;
+}
+
+#projectEdit {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+	background-color: transparent;
+	border: none;
 }

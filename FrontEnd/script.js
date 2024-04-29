@@ -84,13 +84,21 @@ logout.addEventListener("click", function() {
 const openmodal = document.getElementById("projectEdit")
 openmodal.addEventListener("click" , function() {
     document.getElementById("modal").style.display = "flex"
+    document.getElementById("modalWrapperGallery").style.display = "flex"
+    document.getElementById("modalWrapperAddProject").style.display = "none"
     generergalerie(works)
 })
 
-const closemodal = document.getElementById("modalXmark")
-closemodal.addEventListener("click" , function() {
+const closemodalGallery = document.getElementById("modalXmarkGallery")
+closemodalGallery.addEventListener("click" , function() {
     document.getElementById("modal").style.display = "none"
 })
+
+const closemodalAddProject = document.getElementById("modalXmarkAddProject")
+closemodalAddProject.addEventListener("click" , function() {
+    document.getElementById("modal").style.display = "none"
+})
+
 
 /* Ouverture / Fermeture modal */
 
@@ -114,10 +122,9 @@ function generergalerie(works){
 
 /* Gestion du bouton d'envoi des nouveaux travaux */
 let changementtitre = document.getElementById("titretravail")
-let changementcateogrie = document.getElementById("categorySelector")
 let boutonenvoinouveautravail = document.getElementById("addNewWork")
 boutonenvoinouveautravail.disabled = true;
-changementtitre.addEventListener('change', function () {
+changementtitre.addEventListener("change", function () {
     if (document.getElementById("titretravail").value === "") {
         boutonenvoinouveautravail.disabled = true;
         boutonenvoinouveautravail.style.background = 'grey'
@@ -126,4 +133,24 @@ changementtitre.addEventListener('change', function () {
         boutonenvoinouveautravail.style.background = '#1D6154';
     }
     console.log(document.getElementById("titretravail").value)
+})
+/* Gestion du bouton d'envoi des nouveaux travaux */
+
+/* Navigation modale */
+let versajoutprojet = document.getElementById("goToAddProject")
+versajoutprojet.addEventListener("click", function() {
+    document.getElementById("modalWrapperGallery").style.display = "none"
+    document.getElementById("modalWrapperAddProject").style.display = "flex"
+})
+
+let retourgaleriephoto = document.getElementById("backtogallery")
+retourgaleriephoto.addEventListener("click" , function() {
+    document.getElementById("modalWrapperGallery").style.display = "flex"
+    document.getElementById("modalWrapperAddProject").style.display = "none"
+})
+/* Navigation modale */
+
+let ajoutphoto = document.getElementById("imageFile")
+ajoutphoto.addEventListener("change", function() {
+    console.log(imageFile.value)
 })

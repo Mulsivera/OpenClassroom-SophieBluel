@@ -96,33 +96,35 @@
 
 	<!-- Modale galerie photo -->
 
-		<div class="modalWrapperGallery">
+		<div class="modalWrapperGallery" id="modalWrapperGallery">
 			<div class="modalXmarkBox">
-				<img src="/SophieBluel/FrontEnd/assets/icons/xmark.svg" id="modalXmark">
+				<img src="/SophieBluel/FrontEnd/assets/icons/xmark.svg" id="modalXmarkGallery">
 			</div>
 			<p class="modalTitle">Galerie photo</p>
 			<div id="photoGallery"></div>
 			<hr class="modalSeparator">
-			<button class="modalButton">Ajouter une photo</button>
+			<button class="modalButton" id="goToAddProject">Ajouter une photo</button>
 		</div>
 
 	<!-- Modale galerie photo -->
 
 	<!-- Modale Ajout projet -->
 
-		<div class="modalWrapperAddProject">
+		<div class="modalWrapperAddProject" id="modalWrapperAddProject" style="display: none;">
 			<div class="modalAddProjectIconBox">
-				<img src="/SophieBluel/FrontEnd/assets/icons/arrow-left.svg" id="modalXmark">
-				<img src="/SophieBluel/FrontEnd/assets/icons/xmark.svg" id="modalXmark">
+				<img src="/SophieBluel/FrontEnd/assets/icons/arrow-left.svg" id="backtogallery">
+				<img src="/SophieBluel/FrontEnd/assets/icons/xmark.svg" id="modalXmarkAddProject">
 			</div>
-			<div class="AddProjectEditSection">
-				<p class="modalTitle">Ajout photo</p>
-						<div class="AddPhotoButton">
-							<img src="/SophieBluel/FrontEnd/assets/icons/picturegrey.svg">
-							<button>+ Ajouter photo</button>
-							<p>jpg, png : 4mo max</p>
-					</div>
+				<div class="AddProjectEditSection">
+					<p class="modalTitle">Ajout photo</p>
 				<form class="AddWorkForm">
+					<div class="AddPhotoButton" id="AddPhotoButton">
+						<input type="file" id="imageFile" name="imageFile">
+						<img src="/SophieBluel/FrontEnd/assets/icons/picturegrey.svg">
+						<button>+ Ajouter photo</button>
+						<p>jpg, png : 4mo max</p>
+					</div>
+				</input>
 					<label for="titretravail">Titre</label>
 					<input type="text" name="titretravail" id="titretravail">
 					<label for="descriptiontravail">Catégorie</label>

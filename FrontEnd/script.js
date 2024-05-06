@@ -60,11 +60,11 @@ let filterButtons = document.querySelectorAll(".filter-button");
 
 const token = localStorage.getItem('token');
 if (token) {
-    document.getElementById("login").style.display = "none"
-    document.getElementById("logout").style.display = "block"
-    document.getElementById("editionheadband").style.display = "flex"
-    document.getElementById("filters").style.display = "none"
-    document.getElementById("projectEdit").style.display = "flex"
+    AffichageBlock("logout")
+    AffichageNone("login")
+    AffichageNone("filters")
+    AffichageFlex("editionheadband")
+    AffichageFlex("projectEdit")
 }
 
 /* Affichage mode édition */
@@ -85,30 +85,42 @@ logout.addEventListener("click", function() {
 
 const openmodal = document.getElementById("projectEdit")
 openmodal.addEventListener("click" , function() {
-    document.getElementById("modal").style.display = "flex"
-    document.getElementById("modalWrapperGallery").style.display = "flex"
-    document.getElementById("modalWrapperAddProject").style.display = "none"
+    AffichageFlex("modal")
+    AffichageFlex("modalWrapperGallery")
 })
 
 const closemodalGallery = document.getElementById("modalXmarkGallery")
 closemodalGallery.addEventListener("click" , function() {
-    document.getElementById("modal").style.display = "none"
-    document.getElementById("ajoutphotobox").style.display = "flex"
-    document.getElementById("afficherimage").style.display = "none"
-    image.src = ""
+    AffichageNone("modal")
+    AffichageNone("modalWrapperGallery")
 })
 
 const closemodalAddProject = document.getElementById("modalXmarkAddProject")
 closemodalAddProject.addEventListener("click" , function() {
-    document.getElementById("modal").style.display = "none"
-    document.getElementById("ajoutphotobox").style.display = "flex"
-    document.getElementById("afficherimage").style.display = "none"
-    image.src = ""
+    AffichageNone("modal")
+    AffichageNone("modalWrapperAddProject")
+    AffichageNone("afficherimage")
+    AffichageFlex("ajoutphotobox")
 })
 
 
 /* Ouverture / Fermeture modal */
 
+/* Navigation modale */
+let versajoutprojet = document.getElementById("goToAddProject")
+versajoutprojet.addEventListener("click", function() {
+    AffichageNone("modalWrapperGallery")
+    AffichageFlex("modalWrapperAddProject")
+})
+
+let retourgaleriephoto = document.getElementById("backtogallery")
+retourgaleriephoto.addEventListener("click" , function() {
+    AffichageFlex("modalWrapperGallery")
+    AffichageNone("modalWrapperAddProject")
+    AffichageNone("afficherimage")
+    AffichageFlex("ajoutphotobox")
+})
+/* Navigation modale */
 
 /* Génération des images dans la modale galerie photo */
 
@@ -125,22 +137,6 @@ closemodalAddProject.addEventListener("click" , function() {
 
 /* Génération des images dans la modale galerie photo */
 
-/* Navigation modale */
-let versajoutprojet = document.getElementById("goToAddProject")
-versajoutprojet.addEventListener("click", function() {
-    document.getElementById("modalWrapperGallery").style.display = "none"
-    document.getElementById("modalWrapperAddProject").style.display = "flex"
-})
-
-let retourgaleriephoto = document.getElementById("backtogallery")
-retourgaleriephoto.addEventListener("click" , function() {
-    document.getElementById("modalWrapperGallery").style.display = "flex"
-    document.getElementById("modalWrapperAddProject").style.display = "none"
-    document.getElementById("ajoutphotobox").style.display = "flex"
-    document.getElementById("afficherimage").style.display = "none"
-    image.src = ""
-})
-/* Navigation modale */
 
 /* Afficher l'image téléchargée */
 
@@ -153,8 +149,8 @@ ajoutphoto.onchange = function(event) {
 
     reader.onload = function(e) {
         image.src = e.target.result;
-        document.getElementById("afficherimage").style.display = "block"
-        document.getElementById("ajoutphotobox").style.display = "none"
+        AffichageFlex("afficherimage")
+        AffichageNone("ajoutphotobox")
     };
 
     reader.readAsDataURL(file);
@@ -217,3 +213,19 @@ ajouteruntravail.addEventListener("click", function () {
 })
 
 /* Nouveau travaux */
+
+/* Gestion Affichage */
+
+function AffichageBlock (idElement) {
+    document.getElementById(idElement).style.display = "block"
+}
+
+function AffichageFlex (idElement) {
+    document.getElementById(idElement).style.display = "Flex"
+}
+
+function AffichageNone (idElement) {
+    document.getElementById(idElement).style.display = "none"
+}
+
+/* Gestion Affichage */

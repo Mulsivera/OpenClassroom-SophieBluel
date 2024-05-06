@@ -92,11 +92,15 @@ openmodal.addEventListener("click" , function() {
 const closemodalGallery = document.getElementById("modalXmarkGallery")
 closemodalGallery.addEventListener("click" , function() {
     document.getElementById("modal").style.display = "none"
+    document.getElementById("ajoutphotobox").style.display = "flex"
+    document.getElementById("afficherimage").style.display = "none"
 })
 
 const closemodalAddProject = document.getElementById("modalXmarkAddProject")
 closemodalAddProject.addEventListener("click" , function() {
     document.getElementById("modal").style.display = "none"
+    document.getElementById("ajoutphotobox").style.display = "flex"
+    document.getElementById("afficherimage").style.display = "none"
 })
 
 
@@ -110,7 +114,7 @@ function generergalerie(works){
     
     works.forEach(work => {
         galerie += `<div class="modalPicture" style="background-image: url('${work.imageUrl}');">
-        <img class="modalTrash" src="/SophieBluel/FrontEnd/assets/icons/trash.svg">
+        <img class="modalTrash" src="/FrontEnd/assets/icons/trash.svg">
         </div>`
     });
     
@@ -147,10 +151,27 @@ let retourgaleriephoto = document.getElementById("backtogallery")
 retourgaleriephoto.addEventListener("click" , function() {
     document.getElementById("modalWrapperGallery").style.display = "flex"
     document.getElementById("modalWrapperAddProject").style.display = "none"
+    document.getElementById("ajoutphotobox").style.display = "flex"
+    document.getElementById("afficherimage").style.display = "none"
 })
 /* Navigation modale */
 
-let ajoutphoto = document.getElementById("imageFile")
-ajoutphoto.addEventListener("change", function() {
-    console.log(imageFile.value)
-})
+/* Afficher l'image téléchargée */
+
+const ajoutphoto = document.getElementById("imageFile")
+const image = document.getElementById("afficherimage")
+
+ajoutphoto.onchange = function(event) {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+
+    reader.onload = function(e) {
+        image.src = e.target.result;
+        document.getElementById("afficherimage").style.display = "block"
+        document.getElementById("ajoutphotobox").style.display = "none"
+    };
+
+    reader.readAsDataURL(file);
+};
+
+/* Afficher l'image téléchargée */

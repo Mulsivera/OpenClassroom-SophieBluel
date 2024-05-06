@@ -15,7 +15,7 @@
 <!-- Bandeau édition -->
 
 	<div id="editionheadband" style="display: none;">
-		<img src="/SophieBluel/FrontEnd/assets/icons/editwhite.svg">
+		<img src="/FrontEnd/assets/icons/editwhite.svg">
 		<p>Mode édition</p>
 	</div>
 
@@ -28,11 +28,11 @@
 	<header>
 		<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
 		<nav><ul>
-				<li><a href="index.html#projets">projets</a></li>
+				<li><a href="index.html#portfolio">projets</a></li>
 				<li><a href="index.html#formulaire">contact</a></li>
 				<li id="login"><a href="login.html">login</a></li>
 				<li id="logout" style="display: none;"><a href="login.html">logout</a></li>
-				<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
+				<li><img src="/FrontEnd/assets/icons/instagram.png" alt="Instagram"></li>
 		</ul></nav>
 	</header>
 
@@ -62,7 +62,7 @@
 		<div class="projectTitle">
 			<h2>Mes Projets</h2>
 			<button id="projectEdit" href="#modal" style="display: none;">
-				<img src="/SophieBluel/FrontEnd/assets/icons/editblack.svg">
+				<img src="/FrontEnd/assets/icons/editblack.svg">
 				<p>modifier</p>
 			</button>
 		</div>
@@ -98,7 +98,7 @@
 
 		<div class="modalWrapperGallery" id="modalWrapperGallery">
 			<div class="modalXmarkBox">
-				<img src="/SophieBluel/FrontEnd/assets/icons/xmark.svg" id="modalXmarkGallery">
+				<img src="/FrontEnd/assets/icons/xmark.svg" id="modalXmarkGallery">
 			</div>
 			<p class="modalTitle">Galerie photo</p>
 			<div id="photoGallery"></div>
@@ -112,17 +112,20 @@
 
 		<div class="modalWrapperAddProject" id="modalWrapperAddProject" style="display: none;">
 			<div class="modalAddProjectIconBox">
-				<img src="/SophieBluel/FrontEnd/assets/icons/arrow-left.svg" id="backtogallery">
-				<img src="/SophieBluel/FrontEnd/assets/icons/xmark.svg" id="modalXmarkAddProject">
+				<img src="/FrontEnd/assets/icons/arrow-left.svg" id="backtogallery">
+				<img src="/FrontEnd/assets/icons/xmark.svg" id="modalXmarkAddProject">
 			</div>
 				<div class="AddProjectEditSection">
 					<p class="modalTitle">Ajout photo</p>
 				<form class="AddWorkForm">
 					<div class="AddPhotoButton" id="AddPhotoButton">
 						<input type="file" id="imageFile" name="imageFile">
-						<img src="/SophieBluel/FrontEnd/assets/icons/picturegrey.svg">
-						<button>+ Ajouter photo</button>
-						<p>jpg, png : 4mo max</p>
+						<div id="ajoutphotobox">
+							<img class="icon" src="/FrontEnd/assets/icons/picturegrey.svg">
+							<button>+ Ajouter photo</button>
+							<p>jpg, png : 4mo max</p>
+						</div>
+						<img class="ajoutphotoimage" id="afficherimage" src="" >
 					</div>
 				</input>
 					<label for="titretravail">Titre</label>
@@ -153,3 +156,4 @@
 
 </body>
 </html>
+

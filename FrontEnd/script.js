@@ -86,7 +86,6 @@ openmodal.addEventListener("click" , function() {
     document.getElementById("modal").style.display = "flex"
     document.getElementById("modalWrapperGallery").style.display = "flex"
     document.getElementById("modalWrapperAddProject").style.display = "none"
-    generergalerie(works)
 })
 
 const closemodalGallery = document.getElementById("modalXmarkGallery")
@@ -94,6 +93,7 @@ closemodalGallery.addEventListener("click" , function() {
     document.getElementById("modal").style.display = "none"
     document.getElementById("ajoutphotobox").style.display = "flex"
     document.getElementById("afficherimage").style.display = "none"
+    image.src = ""
 })
 
 const closemodalAddProject = document.getElementById("modalXmarkAddProject")
@@ -101,6 +101,7 @@ closemodalAddProject.addEventListener("click" , function() {
     document.getElementById("modal").style.display = "none"
     document.getElementById("ajoutphotobox").style.display = "flex"
     document.getElementById("afficherimage").style.display = "none"
+    image.src = ""
 })
 
 
@@ -109,36 +110,18 @@ closemodalAddProject.addEventListener("click" , function() {
 
 /* Génération des images dans la modale galerie photo */
 
-function generergalerie(works){
     let galerie = "";
     
     works.forEach(work => {
         galerie += `<div class="modalPicture" style="background-image: url('${work.imageUrl}');">
-        <img class="modalTrash" src="/FrontEnd/assets/icons/trash.svg">
+        <img class="modalTrash" id="${work.id}" src="/FrontEnd/assets/icons/trash.svg">
         </div>`
     });
     
     let bodygalerie = document.querySelector("#photoGallery")
     bodygalerie.innerHTML = galerie;
-    }
 
 /* Génération des images dans la modale galerie photo */
-
-/* Gestion du bouton d'envoi des nouveaux travaux */
-let changementtitre = document.getElementById("titretravail")
-let boutonenvoinouveautravail = document.getElementById("addNewWork")
-boutonenvoinouveautravail.disabled = true;
-changementtitre.addEventListener("change", function () {
-    if (document.getElementById("titretravail").value === "") {
-        boutonenvoinouveautravail.disabled = true;
-        boutonenvoinouveautravail.style.background = 'grey'
-    } else {
-        boutonenvoinouveautravail.disabled = false;
-        boutonenvoinouveautravail.style.background = '#1D6154';
-    }
-    console.log(document.getElementById("titretravail").value)
-})
-/* Gestion du bouton d'envoi des nouveaux travaux */
 
 /* Navigation modale */
 let versajoutprojet = document.getElementById("goToAddProject")
@@ -153,6 +136,7 @@ retourgaleriephoto.addEventListener("click" , function() {
     document.getElementById("modalWrapperAddProject").style.display = "none"
     document.getElementById("ajoutphotobox").style.display = "flex"
     document.getElementById("afficherimage").style.display = "none"
+    image.src = ""
 })
 /* Navigation modale */
 
@@ -175,3 +159,39 @@ ajoutphoto.onchange = function(event) {
 };
 
 /* Afficher l'image téléchargée */
+
+/* Gestion du bouton d'envoi des nouveaux travaux */
+
+let changementtitre = document.getElementById("titretravail")
+let boutonenvoinouveautravail = document.getElementById("addNewWork")
+boutonenvoinouveautravail.disabled = true;
+changementtitre.addEventListener("change", function () {
+    if (document.getElementById("titretravail").value === "") {
+        boutonenvoinouveautravail.disabled = true;
+        boutonenvoinouveautravail.style.background = 'grey'
+    } else {
+        boutonenvoinouveautravail.disabled = false;
+        boutonenvoinouveautravail.style.background = '#1D6154';
+    }
+})
+
+/* Gestion du bouton d'envoi des nouveaux travaux */
+
+/* Suppression travaux */
+
+let suppressiontravaux = document.querySelectorAll(".modalTrash");
+        for(let i = 0; i < suppressiontravaux.length; i++) {
+            suppressiontravaux[i].addEventListener("click", function() {
+                let id = suppressiontravaux[i].id
+                console.log (id)
+                if (window.confirm("Voulez-vous vraiment supprier ce travail ?")) {
+                    fetch('http://localhost:5678/api/works/' + id, {
+                        method: 'delete',
+                        headers: {
+                            "Authorization": `Bearer ${token}`,
+                            "Content-Type": "application/json",
+                        }
+                    })
+                }})}
+
+/* Suppression travaux */

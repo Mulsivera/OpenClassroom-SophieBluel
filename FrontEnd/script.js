@@ -8,6 +8,7 @@ document.onload = genererworks(works)
 
 
 /* Fonction de génération des works */
+
 function genererworks(works){
 let figures = "";
 
@@ -21,6 +22,7 @@ works.forEach(work => {
 let bodyFigures = document.querySelector(".gallery")
 bodyFigures.innerHTML = figures
 }
+
 /* Fonction de génération des works */
 
 
@@ -195,3 +197,23 @@ let suppressiontravaux = document.querySelectorAll(".modalTrash");
                 }})}
 
 /* Suppression travaux */
+
+/*  Nouveau travaux */
+
+let ajouteruntravail = document.getElementById("addNewWork")
+ajouteruntravail.addEventListener("click", function () {
+    event.preventDefault();
+    const formData = new FormData();
+    formData.append("image", imageFile.files[0]);
+    formData.append("title", titretravail.value);
+    formData.append("category", categorySelector.value);
+    fetch("http://localhost:5678/api/works", {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Authorization': `Bearer ${token}`,
+        },
+      })
+})
+
+/* Nouveau travaux */

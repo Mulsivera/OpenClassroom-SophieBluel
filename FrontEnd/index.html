@@ -117,7 +117,7 @@
 			</div>
 				<div class="AddProjectEditSection">
 					<p class="modalTitle">Ajout photo</p>
-				<form class="AddWorkForm">
+				<form class="AddWorkForm" id="WorkForm">
 					<div class="AddPhotoButton" id="AddPhotoButton">
 						<input type="file" id="imageFile" name="imageFile">
 						<div id="ajoutphotobox">
@@ -132,9 +132,9 @@
 					<input type="text" name="titretravail" id="titretravail">
 					<label for="descriptiontravail">Catégorie</label>
 					<select name="descriptiontravail" id="categorySelector">
-						<option value="objets">Objets</option>
-						<option value="Appartements">Appartements</option>
-						<option value="Hotels & restaurants">Hotels & Restaurants</option>
+						<option value="1">Objets</option>
+						<option value="2">Appartements</option>
+						<option value="3">Hotels & Restaurants</option>
 					</select>
 					<hr class="modalSeparator">
 					<input class="modalButton" type="submit" value="Valider" id="addNewWork">

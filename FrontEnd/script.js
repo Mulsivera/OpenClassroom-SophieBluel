@@ -1,58 +1,64 @@
-/* Récupération des tableaux */
+/* Récupération des données JSON */
+
 const works = await fetch(`http://localhost:5678/api/works/`).then(works => works.json());
 const categories = await fetch(`http://localhost:5678/api/categories/`).then(categories => categories.json());
-/* Récupération des tableaux */
+
+/* Récupération des données JSON */
 
 
-document.onload = genererworks(works)
+document.onload = worksGeneration(works)
 
 
 /* Fonction de génération des works */
 
-function genererworks(works){
-let figures = "";
+function worksGeneration(works){
+let worksHTML = "";
 
 works.forEach(work => {
-    figures += `<figure>
+    worksHTML += 
+    `<figure>
         <img src="${work.imageUrl}" alt="${work.title}">
         <figcaption>${work.title}</figcaption>
     </figure>`
 });
 
-let bodyFigures = document.querySelector(".gallery")
-bodyFigures.innerHTML = figures
+document.querySelector(".gallery").innerHTML = worksHTML
 }
 
 /* Fonction de génération des works */
 
 
 /* Génération des boutons de filtres */
-let filters = "";
 
-filters += `<button class="filter-button" id="autofocus">Tous</button>`
+let filtersDisplay = "";
+
+filtersDisplay += `<button class="filter-button" id="autofocus">Tous</button>`
 categories.forEach(categories => {
-    filters += `<button class="filter-button">${categories.name}</button>`
+    filtersDisplay += `<button class="filter-button">${categories.name}</button>`
 })
-let bodyCategories = document.querySelector(".filters")
-bodyCategories.innerHTML = filters
+
+document.querySelector(".filters").innerHTML = filtersDisplay
+
 /* Génération des boutons de filtres */
 
 
 /* Application des filtres */
+
 let filterButtons = document.querySelectorAll(".filter-button");
     for(let i = 0; i < filterButtons.length; i++) {
         filterButtons[i].addEventListener("click", function() {
-            const worksfiltres = works.filter(function (works) {
+            const filteredWorks = works.filter(function (works) {
                 return works.categoryId == i;
             });
             if (i > 0){
                 document.querySelector(".gallery").innerHTML ="";
-                genererworks(worksfiltres)
+                worksGeneration(filteredWorks)
             } else {
                 document.querySelector(".gallery").innerHTML ="";
-                genererworks(works)   
+                worksGeneration(works)   
             }
         })}
+
 /* Application des filtres */
 
 
@@ -60,11 +66,11 @@ let filterButtons = document.querySelectorAll(".filter-button");
 
 const token = localStorage.getItem('token');
 if (token) {
-    AffichageBlock("logout")
-    AffichageNone("login")
-    AffichageNone("filters")
-    AffichageFlex("editionheadband")
-    AffichageFlex("projectEdit")
+    Displaymanagement("logout" , "block")
+    Displaymanagement("login" , "none")
+    Displaymanagement("filters" , "none")
+    Displaymanagement("editionheadband" , "flex")
+    Displaymanagement("projectEdit" , "flex")
 }
 
 /* Affichage mode édition */
@@ -72,8 +78,7 @@ if (token) {
 
 /* Logout */
 
-const logout = document.getElementById("logout")
-logout.addEventListener("click", function() {
+document.getElementById("logout").addEventListener("click", function() {
     localStorage.removeItem('token')
     window.location.href = "login.html";
 })
@@ -83,107 +88,86 @@ logout.addEventListener("click", function() {
 
 /* Ouverture / Fermeture modal */
 
-const openmodal = document.getElementById("projectEdit")
-openmodal.addEventListener("click" , function() {
-    AffichageFlex("modal")
-    AffichageFlex("modalWrapperGallery")
+document.getElementById("projectEdit").addEventListener("click" , function() {
+    Displaymanagement("modal" , "flex")
+    Displaymanagement("modalWrapperGallery" , "flex")
 })
 
-const closemodalGallery = document.getElementById("modalXmarkGallery")
-closemodalGallery.addEventListener("click" , function() {
-    AffichageNone("modal")
-    AffichageNone("modalWrapperGallery")
+document.getElementById("modalXmarkGallery").addEventListener("click" , function() {
+    Displaymanagement("modal" , "none")
+    Displaymanagement("modalWrapperGallery" , "none")
 })
 
-const closemodalAddProject = document.getElementById("modalXmarkAddProject")
-closemodalAddProject.addEventListener("click" , function() {
-    AffichageNone("modal")
-    AffichageNone("modalWrapperAddProject")
-    AffichageNone("afficherimage")
-    AffichageFlex("ajoutphotobox")
+document.getElementById("modalXmarkAddProject").addEventListener("click" , function() {
+    Displaymanagement("modal" , "none")
+    Displaymanagement("modalWrapperAddProject" , "none")
+    Displaymanagement("afficherimage" , "none")
+    Displaymanagement("ajoutphotobox" , "flex")
+    document.getElementById("imageFile").value = ""
 })
-
 
 /* Ouverture / Fermeture modal */
 
+
 /* Navigation modale */
-let versajoutprojet = document.getElementById("goToAddProject")
-versajoutprojet.addEventListener("click", function() {
-    AffichageNone("modalWrapperGallery")
-    AffichageFlex("modalWrapperAddProject")
+
+document.getElementById("goToAddProject").addEventListener("click", function() {
+    Displaymanagement("modalWrapperGallery" , "none")
+    Displaymanagement("modalWrapperAddProject" , "flex")
 })
 
-let retourgaleriephoto = document.getElementById("backtogallery")
-retourgaleriephoto.addEventListener("click" , function() {
-    AffichageFlex("modalWrapperGallery")
-    AffichageNone("modalWrapperAddProject")
-    AffichageNone("afficherimage")
-    AffichageFlex("ajoutphotobox")
+document.getElementById("backtogallery").addEventListener("click" , function() {
+    Displaymanagement("modalWrapperGallery" , "flex")
+    Displaymanagement("modalWrapperAddProject" , "none")
+    Displaymanagement("afficherimage" , "none")
+    Displaymanagement("ajoutphotobox" , "flex")
+    document.getElementById("imageFile").value = ""
 })
+
 /* Navigation modale */
+
 
 /* Génération des images dans la modale galerie photo */
 
-    let galerie = "";
+    let galleryHTML = "";
     
     works.forEach(work => {
-        galerie += `<div class="modalPicture" style="background-image: url('${work.imageUrl}');">
+        galleryHTML += `<div class="modalPicture" style="background-image: url('${work.imageUrl}');">
         <img class="modalTrash" id="${work.id}" src="/FrontEnd/assets/icons/trash.svg">
         </div>`
     });
     
-    let bodygalerie = document.querySelector("#photoGallery")
-    bodygalerie.innerHTML = galerie;
+    document.querySelector("#photoGallery").innerHTML = galleryHTML;
 
 /* Génération des images dans la modale galerie photo */
 
 
 /* Afficher l'image téléchargée */
 
-const ajoutphoto = document.getElementById("imageFile")
-const image = document.getElementById("afficherimage")
+const addPicture = document.getElementById("imageFile")
+const picture = document.getElementById("afficherimage")
 
-ajoutphoto.onchange = function(event) {
+addPicture.onchange = function(event) {
     const file = event.target.files[0];
     const reader = new FileReader();
 
     reader.onload = function(e) {
-        image.src = e.target.result;
-        AffichageFlex("afficherimage")
-        AffichageNone("ajoutphotobox")
+        picture.src = e.target.result;
+        Displaymanagement("afficherimage" , "flex")
+        Displaymanagement("ajoutphotobox" , "none")
     };
-
     reader.readAsDataURL(file);
 };
 
 /* Afficher l'image téléchargée */
 
-/* Gestion du bouton d'envoi des nouveaux travaux */
+/* Suppression d'un "work" */
 
-let changementtitre = document.getElementById("titretravail")
-let boutonenvoinouveautravail = document.getElementById("addNewWork")
-boutonenvoinouveautravail.disabled = true;
-changementtitre.addEventListener("change", function () {
-    if (document.getElementById("titretravail").value === "") {
-        boutonenvoinouveautravail.disabled = true;
-        boutonenvoinouveautravail.style.background = 'grey'
-    } else {
-        boutonenvoinouveautravail.disabled = false;
-        boutonenvoinouveautravail.style.background = '#1D6154';
-    }
-})
-
-/* Gestion du bouton d'envoi des nouveaux travaux */
-
-/* Suppression travaux */
-
-let suppressiontravaux = document.querySelectorAll(".modalTrash");
-        for(let i = 0; i < suppressiontravaux.length; i++) {
-            suppressiontravaux[i].addEventListener("click", function() {
-                let id = suppressiontravaux[i].id
-                console.log (id)
-                if (window.confirm("Voulez-vous vraiment supprier ce travail ?")) {
-                    fetch('http://localhost:5678/api/works/' + id, {
+let workDelete = document.querySelectorAll(".modalTrash");
+        for(let i = 0; i < workDelete.length; i++) {
+            workDelete[i].addEventListener("click", function() {
+                if (window.confirm("Voulez-vous vraiment supprimer ce travail ?")) {
+                    fetch('http://localhost:5678/api/works/' + workDelete[i].id, {
                         method: 'delete',
                         headers: {
                             "Authorization": `Bearer ${token}`,
@@ -192,12 +176,12 @@ let suppressiontravaux = document.querySelectorAll(".modalTrash");
                     })
                 }})}
 
-/* Suppression travaux */
+/* Suppression d'un "work" */
 
-/*  Nouveau travaux */
 
-let ajouteruntravail = document.getElementById("addNewWork")
-ajouteruntravail.addEventListener("click", function () {
+/*  Ajout d'un nouveau "work" */
+
+document.getElementById("addNewWork").addEventListener("click", function () {
     event.preventDefault();
     const formData = new FormData();
     formData.append("image", imageFile.files[0]);
@@ -212,20 +196,26 @@ ajouteruntravail.addEventListener("click", function () {
       })
 })
 
-/* Nouveau travaux */
+/*  Ajout d'un nouveau "work" */
 
-/* Gestion Affichage */
+/* Gestion de l'affichage des éléments */
 
-function AffichageBlock (idElement) {
-    document.getElementById(idElement).style.display = "block"
+function Displaymanagement (idElement, style) {
+    document.getElementById(idElement).style.display = style
 }
 
-function AffichageFlex (idElement) {
-    document.getElementById(idElement).style.display = "Flex"
-}
+/* Gestion de l'affichage des éléments */
 
-function AffichageNone (idElement) {
-    document.getElementById(idElement).style.display = "none"
-}
 
-/* Gestion Affichage */
+/* Gestion du bouton d'envoi de nouveaux works */
+
+document.getElementById("WorkForm").addEventListener("change", function () {
+if (document.getElementById("imageFile").value === "" || document.getElementById("titretravail").value === ""){
+    document.getElementById("addNewWork").disabled = true
+    document.getElementById("addNewWork").style.background = "grey"
+} else {
+    document.getElementById("addNewWork").disabled = false
+    document.getElementById("addNewWork").style.background = "#1D6154"
+}})
+
+/* Gestion du bouton d'envoi de nouveaux works */

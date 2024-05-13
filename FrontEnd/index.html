@@ -19,7 +19,7 @@
 		<p>Mode édition</p>
 	</div>
 
-<!-- bandeau éditon -->
+<!-- Bandeau éditon -->
 
 <body>
 
@@ -119,7 +119,7 @@
 					<p class="modalTitle">Ajout photo</p>
 				<form class="AddWorkForm" id="WorkForm">
 					<div class="AddPhotoButton" id="AddPhotoButton">
-						<input type="file" id="imageFile" name="imageFile">
+						<input type="file" id="imageFile" name="imageFile" required>
 						<div id="ajoutphotobox">
 							<img class="icon" src="/FrontEnd/assets/icons/picturegrey.svg">
 							<button>+ Ajouter photo</button>
@@ -129,9 +129,9 @@
 					</div>
 				</input>
 					<label for="titretravail">Titre</label>
-					<input type="text" name="titretravail" id="titretravail">
+					<input type="text" name="titretravail" id="titretravail" required>
 					<label for="descriptiontravail">Catégorie</label>
-					<select name="descriptiontravail" id="categorySelector">
+					<select name="descriptiontravail" id="categorySelector" required>
 						<option value="1">Objets</option>
 						<option value="2">Appartements</option>
 						<option value="3">Hotels & Restaurants</option>

@@ -1,28 +1,27 @@
 document.getElementById("alert").style.display = "none"
 
-const submit = document.querySelector('.loginSubmit');
-submit.addEventListener("click", async function(){
+const loginSubmitButton = document.querySelector('.loginSubmit');
+loginSubmitButton.addEventListener("click", async function(){
     event.preventDefault();
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
-    const identifants = {
+    const logins = {
         email: email,
         password: password,
     }
-    const userlogin = await fetch('http://localhost:5678/api/users/login', {
+    const userLogin = await fetch('http://localhost:5678/api/users/login', {
         method: 'post',
         headers: {'content-type': 'application/json'},
-        body: JSON.stringify(identifants)
+        body: JSON.stringify(logins)
     })
 
-    if (!userlogin.ok) {
+    if (!userLogin.ok) {
         document.getElementById("alert").style.display = "block"
     }
 
-    const resultatuserlogin = await userlogin.json ();
-    console.log(resultatuserlogin);
+    const userLoginResult = await userLogin.json ();
 
-    const token = resultatuserlogin.token;
+    const token = userLoginResult.token;
 
     if (token) {
         localStorage.setItem("token", token);

@@ -104,6 +104,7 @@ document.getElementById("modalXmarkAddProject").addEventListener("click" , funct
     Displaymanagement("afficherimage" , "none")
     Displaymanagement("ajoutphotobox" , "flex")
     document.getElementById("imageFile").value = ""
+    document.getElementById("titretravail").value = ""
 })
 
 /* Ouverture / Fermeture modal */
@@ -122,6 +123,7 @@ document.getElementById("backtogallery").addEventListener("click" , function() {
     Displaymanagement("afficherimage" , "none")
     Displaymanagement("ajoutphotobox" , "flex")
     document.getElementById("imageFile").value = ""
+    document.getElementById("titretravail").value = ""
 })
 
 /* Navigation modale */
@@ -140,6 +142,24 @@ document.getElementById("backtogallery").addEventListener("click" , function() {
     document.querySelector("#photoGallery").innerHTML = galleryHTML;
 
 /* Génération des images dans la modale galerie photo */
+
+
+/* Suppression d'un "work" */
+
+let workDelete = document.querySelectorAll(".modalTrash");
+        for(let i = 0; i < workDelete.length; i++) {
+            workDelete[i].addEventListener("click", function() {
+                if (window.confirm("Voulez-vous vraiment supprimer ce travail ?")) {
+                    fetch('http://localhost:5678/api/works/' + workDelete[i].id, {
+                        method: 'delete',
+                        headers: {
+                            "Authorization": `Bearer ${token}`,
+                            "Content-Type": "application/json",
+                        }
+                    })
+                }})}
+
+/* Suppression d'un "work" */
 
 
 /* Afficher l'image téléchargée */
@@ -161,22 +181,20 @@ addPicture.onchange = function(event) {
 
 /* Afficher l'image téléchargée */
 
-/* Suppression d'un "work" */
 
-let workDelete = document.querySelectorAll(".modalTrash");
-        for(let i = 0; i < workDelete.length; i++) {
-            workDelete[i].addEventListener("click", function() {
-                if (window.confirm("Voulez-vous vraiment supprimer ce travail ?")) {
-                    fetch('http://localhost:5678/api/works/' + workDelete[i].id, {
-                        method: 'delete',
-                        headers: {
-                            "Authorization": `Bearer ${token}`,
-                            "Content-Type": "application/json",
-                        }
-                    })
-                }})}
+/* Gestion du bouton d'envoi de nouveaux works */
 
-/* Suppression d'un "work" */
+let addNewWorkButton = document.getElementById("addNewWork")
+document.getElementById("WorkForm").addEventListener("change", function () {
+if (document.getElementById("imageFile").value === "" || document.getElementById("titretravail").value === ""){
+    addNewWorkButton.disabled = true
+    addNewWorkButton.style.background = "grey"
+} else {
+    addNewWorkButton.disabled = false
+    addNewWorkButton.style.background = "#1D6154"
+}})
+
+/* Gestion du bouton d'envoi de nouveaux works */
 
 
 /*  Ajout d'un nouveau "work" */
@@ -198,6 +216,7 @@ document.getElementById("addNewWork").addEventListener("click", function () {
 
 /*  Ajout d'un nouveau "work" */
 
+
 /* Gestion de l'affichage des éléments */
 
 function Displaymanagement (idElement, style) {
@@ -205,17 +224,3 @@ function Displaymanagement (idElement, style) {
 }
 
 /* Gestion de l'affichage des éléments */
-
-
-/* Gestion du bouton d'envoi de nouveaux works */
-
-document.getElementById("WorkForm").addEventListener("change", function () {
-if (document.getElementById("imageFile").value === "" || document.getElementById("titretravail").value === ""){
-    document.getElementById("addNewWork").disabled = true
-    document.getElementById("addNewWork").style.background = "grey"
-} else {
-    document.getElementById("addNewWork").disabled = false
-    document.getElementById("addNewWork").style.background = "#1D6154"
-}})
-
-/* Gestion du bouton d'envoi de nouveaux works */

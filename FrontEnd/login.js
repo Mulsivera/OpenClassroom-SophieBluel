@@ -1,6 +1,6 @@
 document.getElementById("alert").style.display = "none"
 
-const loginSubmitButton = document.querySelector('.loginSubmit');
+const loginSubmitButton = document.querySelector(".loginSubmit");
 loginSubmitButton.addEventListener("click", async function(){
     event.preventDefault();
     const email = document.getElementById('email').value;
